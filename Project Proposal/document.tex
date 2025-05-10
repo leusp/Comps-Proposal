@@ -1,0 +1,197 @@
+\documentclass[10pt,twocolumn]{article}
+
+% use the oxycomps style file
+\usepackage{oxycomps}
+
+% usage: \fixme[comments describing issue]{text to be fixed}
+% define \fixme as not doing anything special
+\newcommand{\fixme}[2][]{#2}
+% overwrite it so it shows up as red
+\renewcommand{\fixme}[2][]{\textcolor{red}{#2}}
+% overwrite it again so related text shows as footnotes
+%\renewcommand{\fixme}[2][]{\textcolor{red}{#2\footnote{#1}}}
+
+% read Princess Leus.bib for the bibtex data
+\bibliography{Princess Leus}
+
+% include metadata in the generated pdf file
+\pdfinfo{
+    /Title (My Lit Review for My Comps)
+    /Author (Princess Leus)
+}
+
+% set the title and author information
+\title{Comprehensive Proposal: Speedy Secondhand Search Web App}
+\author{Princess Leus}
+\affiliation{Occidental College}
+\email{leusp@oxy.edu}
+
+\begin{document}
+
+\maketitle
+\section{Introduction}
+The fashion industry is one of the largest contributors to environmental waste, with fast fashion accelerating the cycle of clothing consumption and disposal. In response to these concerns, second-hand fashion marketplaces such as Depop, Facebook Marketplace, and eBay have gained popularity, offering consumers a more sustainable alternative to purchasing new clothing. However, despite the growth of these platforms, users often face challenges in efficiently finding second-hand alternatives to specific clothing items they wish to purchase. Current resale platforms typically rely on keyword-based searches, which may not always yield accurate or relevant results, particularly when users seek visually similar alternatives rather than exact matches. 
+
+For my project, I aim to create a web application called RapidRacks that simplifies the process of searching for secondhand clothing by aggregating listings from platforms like Facebook Marketplace, Depop, and eBay into a single, centralized platform. By utilizing APIs, the app will reduce the time and effort users spend switching between different platforms, streamlining their search experience. Rather than focusing on web scraping or machine learning, my approach will center on UX/UI design and Human-Computer Interaction (HCI) principles to create an intuitive, efficient, and user-centered experience. I plan to start with a wireframe in Figma to outline the core design framework and key features, ensuring that usability is prioritized. My research will also focus on improving user experience through better filtering, ranking algorithms, and optimized UI components.
+
+
+\section{Problem Context}
+The current process of searching for secondhand clothing online is time-consuming and inefficient. Users must navigate multiple apps and websites individually, each with different interfaces, filters, and limited cross-platform visibility. The only other aggregated platform is Facebook Marketplace, however their version of aggregating Depop listings are done through advertisements. Users who participated in my user interview also  also faced with registering among all the listed second hand apps in order to save items, carts, or searches as outlined by Lulu Cai et al. (2018) paper \cite{cai2018}. In this paper, the different paths taken for online shopping are outlined after a customer registers. Centralizing the different sections of these different sites like "Products Recommended", "Latest Products" and more serve as a  disjointed experience.The effort required to find desired items increases, but also discourages sustainable shopping habits altogether. There is currently no centralized platform that aggregates listings from various secondhand sources in a user-friendly, efficient way. This project aims to solve that problem by designing a web application that consolidates secondhand listings and prioritizes user experience, ultimately making sustainable shopping more accessible and efficient.
+
+\subsection{Environmental Impact of Fast Fashion}
+Fast fashion is widely recognized for its environmental harm, contributing to an estimated 10\% of global carbon emissions and generating over 92 million tons of textile waste annually \cite{un2019}. Its economic model encourages overconsumption and short product life cycles, leading to excessive resource usage and premature disposal of garments. While secondhand marketplaces offer a promising alternative, their adoption is often hindered by inefficient search interfaces, fragmented platform ecosystems, and the lack of cross-platform recommendation tools. Through this lens, an opportunity to develop technical solutions such as centralized search engines, improved filtering mechanisms, and intelligent recommendation systems streamline the discovery of second-hand clothing. Addressing this problem through user-centered software design can enhance sustainable consumption behaviors by reducing friction in the online resale process.
+\subsection{Limitations of Existing Second Hand Platforms}
+Current secondhand platforms like Depop, eBay, and Facebook Marketplace suffer from fragmented user experiences and inconsistent UI/UX design, which hinder seamless shopping. Ashfaq et al. (2019) \cite{ashfaq2019} empirically demonstrate that perceived ease of use (PEOU) , a critical  user satisfaction metric is often compromised due to cluttered interfaces, inefficient search functionalities, anduse inconsistent systems for categorizing, labeling, and organizing products. Their study of Chinese secondhand shoppers reveals that while perceived enjoyment drives repurchase intention, platform-specific friction (e.g., manual listing processes, disjointed navigation) exacerbates inconvenience and reduces trust. For example, users must adapt to divergent filtering systems (e.g., hashtags on Depop vs. keyword searches on eBay) and payment workflows, increasing cognitive load. This fragmentation forces users to juggle multiple apps, undermining the efficiency gains of digital resale. Cross-platform aggregation, as proposed in this project, could mitigate these issues by centralizing search and standardizing UX elements like condition ratings and checkout flows.
+
+To address these limitations, this project will enhance the search experience by providing more precise and visually relevant matches, ultimately promoting sustainable shopping practices. Even with the growing awareness of sustainable fashion, many consumers struggle to find second-hand alternatives for specific clothing items. Existing resale platforms primarily depend on manual search queries, which can be time-consuming and ineffective, particularly when searching for visually similar items. This inefficiency discourages potential buyers from opting for second-hand purchases, leading them to default to new clothing options, thus perpetuating fast fashion's environmental impact.
+
+
+\section{Technical Background}
+\subsection{Fogg Behavior Model for Digital Design}
+The Fogg Behavior Model (FBM), developed by B.J. Fogg (2003), offers a valuable framework for designing digital experiences that support behavior change \cite{fogg2003}. According to FBM, three elements must converge for a behavior to occur: motivation, ability, and a trigger. In the context of a secondhand fashion aggregator, motivation might stem from intrinsic goals like reducing environmental impact or extrinsic rewards like saving money. Ability refers to how easy it is for users to complete the desired action—such as finding and purchasing secondhand clothing—through intuitive search filters or personalized results. Triggers act as timely cues, such as a notification about a price drop on a saved item, prompting users to act. Integrating the FBM into this platform allows designers to ethically influence sustainable shopping behaviors by enhancing usability and aligning with users’ personal values, rather than relying on manipulative tactics like artificial scarcity or overwhelming urgency. By lowering barriers to action and highlighting meaningful incentives, the interface can guide users toward sustainable consumption choices in a respectful, user-centered way.
+\subsection{User Centered Design}
+Many existing secondhand fashion platforms rely heavily on keyword-based search mechanisms that use string-matching algorithms to retrieve listings. While effective for structured data or specific product names, this method falls short when applied to fashion items, where users often seek visually similar styles rather than exact textual matches. Studies in information retrieval and HCI have noted that keyword-only search can lead to irrelevant or imprecise results, especially in visually driven domains like clothing. In response, researchers have explored alternative input modalities such as reverse image search and style-based recommendation engines that allow users to discover visually related items through image embeddings or tag-based clustering.
+
+Beyond search functionality, aggregating secondhand listings across platforms introduces significant technical complexity. REST APIs from platforms like eBay or Facebook Marketplace provide structured access to listings, but developers must contend with barriers such as rate limits, required authentication, inconsistent metadata formats, and differing update frequencies. Effective aggregation also involves deduplication, normalization, and sometimes enrichment of product data to ensure a cohesive user experience. Literature on federated search systems and multi-source API integration offers strategies for managing these issues in scalable ways.
+
+User experience (UX) and interface design (UI) also play a central role in the usability of secondhand platforms. Foundational HCI principles such as progressive disclosure, minimalist design, and interaction feedback are crucial for maintaining clarity in cluttered marketplaces. Features like hover previews, loading indicators, and post-action confirmations help users navigate complex listings with greater confidence. Furthermore, visual cues and layout choices directly affect trust and urgency in ecommerce environments. For example, research has shown that urgency-inducing elements (e.g., countdown timers or stock limits) can drive conversions but must be balanced to avoid causing user anxiety (Levy et al., 2018). These principles inform how the proposed web application will streamline secondhand fashion discovery while reducing cognitive load.
+
+
+\section{Prior Work}
+One foundational study that informs this project centers on building a thrift shop website using a User-Centered Design (UCD) methodology. The study emphasizes the importance of iterative feedback from real users and stakeholders to shape the interface, features, and functionality of an e-commerce platform. The researchers conducted interviews with both business stakeholders (1–2 individuals) and potential users (3–5 individuals) to understand their goals, frustrations, and expectations when navigating online thrift platforms. Interview questions included prompts like: “What are your main goals when shopping secondhand online?” and “What features would make your experience better?” This approach helped identify user priorities such as simplified purchasing processes, aesthetically pleasing design, affordable pricing, and intuitive navigation \cite{firmansyah2024}. 
+\subsection{Data Collection and Evaluation Metrics
+}The study employed a dual strategy of qualitative and quantitative evaluation. Quantitative metrics, drawn from tools like Maze.design, included direct success rate (targeting 90–100\%), mission unfinished rate (<10\%), average task duration (ideally under 30 seconds for simple interactions), misclick rate (<20\%), and overall usability score (target >90 on a 0–100 scale). These benchmarks offered a data-driven way to assess whether users could complete tasks such as filtering products or checking out, and how efficiently they could do so.
+
+On the qualitative side, user feedback was gathered to evaluate aspects like the visual appeal of the interface, the clarity of product information, the intuitiveness of navigation, and overall satisfaction with the checkout experience. This dual-methods approach ensured that both the functionality and emotional impact of the interface were considered during each iteration of design.
+
+\subsection{Design System and Key UI Elements}
+A monochromatic design aesthetic with clean, legible typography was proposed, which users preferred for its simplicity and modern look. Layout principles focused on consistent navigation, a clear visual hierarchy, and generous white space to reduce cognitive overload. Key UI components were developed based on successful patterns found in existing e-commerce sites. For example, the home page featured curated product collections and categorized navigation (e.g., Men/Women/Brands/Sales), while individual product pages included high-quality imagery, size guides, detailed descriptions, and robust filtering options. The checkout flow prioritized accessibility and ease of use by incorporating guest checkout, multiple payment methods, clear progress indicators, and address autofill capabilities. Additional features like customer support access, fashion articles, and rating systems were added to improve engagement and trust. These elements were not just aesthetic decisions but derived from user preferences and validated by usability testing.
+\subsection{Prototyping, Testing, and Iterative Refinement}
+The implementation process followed a standard UCD workflow: beginning with low-fidelity wireframes, advancing to high-fidelity mockups in Figma, and ultimately producing interactive prototypes for user testing. Each design iteration involved usability tests with 5–7 participants focusing on essential flows like product discovery, cart addition, and checkout. Evaluation metrics were reapplied after each cycle, and the interface was revised based on user feedback and observed pain points.
+
+The final stage of the process involved a comprehensive usability test to ensure that all target metrics had been met before moving toward development. This methodical, user-informed process provided empirical backing for each design decision and ensured that the end product was both technically functional and user-friendly.
+
+\subsection{Key Insights}
+This case study demonstrates the effectiveness of user-centered methods in secondhand e-commerce platforms. The final product achieved a usability score of 97, illustrating how centering user feedback can lead to highly functional and aesthetically pleasing outcomes. In particular, simplifying the interface with a monochromatic palette did not compromise usability. In fact, it enhanced it by minimizing distractions. One standout lesson was the importance of guest checkout: offering a non-account option significantly improved conversion rates by reducing friction. The inclusion of Maze.design for testing also underscored the value of measurable feedback in driving iterative design improvements.
+
+
+
+
+In addition to interviews, the study incorporated a literature review of secondhand shopping behaviors, UI/UX principles in e-commerce, and prevailing visual trends in online fashion retail. These sources provided a technical and sociocultural foundation for determining best practices in thrift-focused web design. The design process was structured around these findings to align technical development with user expectations.
+
+I want to use this paper to create kind of a guideline of how I want to structure my data collection and my evaluation metrics in terms of determining a baseline of how I will numerically and empircally test my prototypes the more that it gets tested ( im referring to their Specify User Requirements) and creating design solutions and guides on the elements i should use like how they mention the monochromatic colors 
+Recent studies, such as Firmansyah et al. (2024) \cite{firmansyah2024}, demonstrate the effectiveness of User-Centered Design (UCD) in thrift e-commerce, with usability scores reaching 97\% for features like guest checkouts and advanced filtering. However, their focus on single-store platforms leaves unaddressed the broader challenge of cross-platform fragmentation. This project extends UCD principles to aggregate multi-source listings, reducing the cognitive load identified in Cai et al. (2018).
+
+\subsection{Search Behavior in Online Shopping}
+Grant et al. (2007)\cite{grant2007} demonstrate that online search behavior for "experience" goods like clothing fundamentally differs from standardized "search" products due to consumers' need to evaluate subjective attributes (p. 528). Their analysis reveals three key patterns in apparel search: first, consumers place greater value on visual information formats (e.g., images, videos) that approximate the tactile evaluation of in-person shopping (p. 523); second, users engage in iterative "heuristic search" (p. 521), alternating between exploratory browsing and targeted queries when faced with inconsistent product descriptions - a particular challenge in secondhand markets; and third, cognitive overload frequently occurs when platforms lack standardized categorization or comparability features, forcing excessive evaluation effort (pp. 521-522). While not explicitly discussing modern UX tools, Grant et al.'s emphasis on information format utility (p. 523) and user-friendly interactivity (p. 521) provides theoretical grounding for interface designs that reduce cognitive load through structured navigation and visual information presentation.
+
+\subsection{Sustainable Shopping Motivations and Barriers}
+In their study, Lundblad and Davies (2015)\cite{lundblad2015} explore the motivations and barriers behind sustainable fashion consumption, revealing that consumers are primarily driven by ethical values like social justice and environmental protection, as well as personal benefits such as higher quality, durability, and self-expression through unique styles. However, they also identify significant obstacles, including the higher costs of sustainable fashion, the limited availability of desirable styles, and the extra time and effort required to research and verify ethical brands, factors that make the convenience and affordability of fast fashion more attractive to mainstream shoppers. The authors note that while some consumers turn to secondhand shopping as a more accessible sustainable alternative, the challenge of finding specific items remains a deterrent. Their findings suggest that reducing friction in the sustainable shopping experience  whether it be through better curation, accessibility, or transparency, it could help align consumer behavior with ethical values.
+
+
+
+\section{Methods}
+\subsection{User Interviews and Feedback Sessions}
+To better understand the pain points users face while shopping for secondhand clothing online, I conducted informal interviews with two active users of resale platforms such as Depop, Poshmark, and Facebook Marketplace. Interview questions centered on their current browsing behaviors, frustrations with existing filtering mechanisms, and how they typically discover new fashion items. Both users expressed fatigue with keyword-based searching and emphasized the desire for more intuitive, visually-driven browsing. Users detailed the struggle of juggling different platforms to compare items as well as poor filtering for fashion terms such as "Y2K" and "grunge". These findings directly influence my design priorities which include implementing tag-based navigation and visual previews, which aim to streamline the discovery process and reduce cognitive load.
+\subsection{Competitive Analysis}
+Within my mini project I conducted a comparative UI/UX analysis of Depop, Facebook Marketplace, and eBay, focusing on design, filtering, communication, and visual features. Depop’s social feed appeals to younger users but lacks advanced filters. Facebook Marketplace is efficient for local pickups but not fashion-focused. eBay offers global reach and auction urgency but has a cluttered interface. These findings shaped my hybrid design approach, combining Depop’s aesthetic, Facebook’s communication flow, and eBay’s urgency-driven features like hover previews and countdowns.
+\subsection{Task Flow}
+To ensure the application supports real user goals, I will first define a detailed task flow as detailed in Cai et al. (2018)  representing key user interactions, such as searching for clothing, filtering by style or price, adding items to collections, and exiting the platform \cite{cai2018}. This task flow will serve as the foundation for UI development, enabling alignment between interface design and expected user behavior. The task flow will be iteratively refined based on user feedback and usability testing.
+\subsection{User Centered Design (UCD) and Feedback Integration}
+Following the principles of User-Centered Design (UCD), my development process will emphasize continuous feedback loops from target users. I will conduct low-fidelity wireframe testing sessions and structured interviews during the early design phase, ensuring that the evolving interface reflects user needs and pain points. Feedback will inform interface decisions such as navigation patterns, filtering logic, and content hierarchy.
+\subsection{Data Collection}
+To systematically gather feedback and behavioral insights, I will use a combination of direct observation, task completion timing, and post-task surveys during prototype testing. Tools such as Google Forms (for qualitative data), screen recording tools (like Loom), and time-on-task metrics will be used to assess ease of use and interface clarity. This data will be anonymized and analyzed to identify trends that inform iterative improvements.
+\subsection{A/B Testing}
+After multiple iterations of user feedback and prototype refinement, I plan to implement A/B testing to evaluate the effectiveness of specific interface decisions. This controlled comparison will involve presenting two versions of a key feature—such as tag-based filtering layout, hover preview behavior, or the item detail hierarchy—to different user groups. Participants will complete identical tasks (e.g., locating a specific item, adding to a collection) on both versions, and their interactions will be recorded and measured based on metrics like task success rate, time on task, and user satisfaction via post-task surveys. This method will help isolate which design variation better supports user efficiency and preference, allowing for data-informed decisions in the final prototype.
+\subsection{Tools and Platforms}
+The primary design tool will be Figma, used to create and refine the UI wireframes and prototypes. For collaborative feedback and design versioning, I will use FigJam and Notion to document insights. Depending on feasibility, Chrome DevTools or React Developer Tools may be used later to test interactive elements, and if implemented, lightweight APIs such as Mercari, eBay, or Depop public endpoints (or scraping alternatives if APIs are unavailable) will serve as data sources for listing previews.
+
+
+\subsection{Mini Project}
+User interviews and prototype testing revealed that small interaction details like mislabeling a “drag” as a “swipe” can impact clarity across devices. Visual feedback, such as highlighting clicked items, helped users track engagement and multitask effectively. To improve discovery, I added a “browse by style” option inspired by Depop’s tags and a link-to-collection feature that auto-imports product details from pasted URLs. For the final build, I’ll research the right APIs to enable this. I’m still weighing the inclusion of seller rankings due to them boosting trust but they risk adding clutter. Moving forward, I’ll prioritize lightweight, low-friction features that support quick, intuitive fashion discovery.
+
+\subsection{Timeline}
+Here is my proposed timeline for next semester: 
+
+\begin{itemize}
+    \item{August:}
+    \begin{itemize}
+        \item Milestone 1: Review feedback from initial user testing and revise Figma prototype accordingly. Finalize core user flows and design adjustments in Figma based on usability insights.
+        \item Milestone 2: Research and document potential APIs (e.g., eBay, Depop, Facebook Marketplace) for listing aggregation.
+
+    \end{itemize}
+    \item {September:}
+    \begin{itemize}
+        \item Milestone 1: Begin technical implementation of the front-end interface  with updated filtering, tagging, and visual features informed by earlier feedback.
+        \item Milestone 2: Conduct second round of user testing with revised prototype; document key usability improvements and remaining pain points using time-on-task metrics, Loom recordings, and Google Forms for qualitative insights.
+        \item Milestone 3: Develop a task flow diagram based on interview insights and user goals (searching, filtering, saving items, etc.).
+
+    \end{itemize}
+    \item{October:}
+    \begin{itemize}
+        \item Milestone 1: Begin integrating backend/API functionalities; experiment with one platform’s API and handle authentication and data parsing.
+        \item Milestone 2: Test backend with limited search functionality; implement tagging or filtering prototype.
+
+    \end{itemize}
+    \item {November:}
+    \begin{itemize}
+        \item Milestone 1: Refine visual search/collection-saving features; implement notification trigger (based on Fogg Behavior Model).
+        \item Milestone 2: Design and implement A/B testing to compare interface variations (e.g., tag filter layout, hover previews)
+
+    \end{itemize}
+    \item{December:}
+    \begin{itemize}
+        \item Milestone 1: Prepare and present comps poster; collect and incorporate feedback into final revisions.
+        \item Milestone 2: Finalize and submit comprehensive comps report, including reflection on design process, technical development, and user research.
+    \end{itemize}
+\end{itemize}
+\section{Evaluation Metrics}
+Several evaluation metrics will be employed throughout the development and testing phases. These metrics will focus on both usability and user satisfaction, ensuring that the platform is intuitive, efficient, and enjoyable to use.
+\subsection{Task Completion Time}
+This metric measures the time users take to complete specific tasks (e.g., searching for an item, filtering by style, or adding an item to a collection). The goal will be to have shorter task completion times indicate a more efficient and intuitive interface. Tracking this metric will allow for optimization of interaction flows and identify potential design errors.
+\subsection{Error Rate}
+The error rate will track the number of errors users make while interacting with the platform, such as incorrect filtering or navigation mistakes, with a goal of having a low error rate to signal a user-friendly interface.
+\subsection{User Satisfaction}
+This could be measured via a Likert scale in post-task surveys via Google Forms. 
+\subsection{System Usability Scale (SUS)}
+SUS is a standardized tool used to assess the usability of a system. It consists of a 10-item questionnaire that evaluates the user's overall experience. A higher SUS score (typically over 68) indicates that the platform is usable and effective. This will be used as a benchmark for the platform’s overall user-friendliness.
+\subsection{A/B Test Performance}
+Different variations of the platform will be tested with users to determine which elements—such as tag navigation or hover previews—improve engagement or task efficiency.
+\subsection{Engagement Rate}
+Higher engagement rates suggest that the platform’s features are valuable and effectively integrated into the user flow. Low engagement could indicate that certain features are overlooked or difficult to use. This looks like engaging with key features, such as using filters, saving items to collections, or sharing items.
+\section{Ethical Considertaions}
+I will investigate ethical and legal implications of web scraping, along with how to handle user-uploaded images securely. This project raises several concerns regarding data privacy and user data security. I need to ensure that I comply with the terms of service of each website, ensuring that the scraping process does not violate platform policies or overburden their servers. To protect user privacy, all uploaded images will be processed locally or on secure servers, and no personal data will be stored without explicit consent.
+
+\subsection{Dark Patterns}
+Dark patterns are deceptive user interface tactics that manipulate individuals into taking actions they might not otherwise choose \cite{gray2018}. Many are prevalent on modern e-Commerce platforms. Common examples include misleading urgency through fake countdown timers, hidden costs introduced late in the checkout process (drip pricing), and forced actions like requiring account creation before allowing users to browse \cite{maier2020darkpatterns}. In contrast, this project emphasizes an ethical and transparent UX design that respects user autonomy and trust. The platform avoids false scarcity or pressure-based tactics, instead allowing users to explore second-hand fashion options at their own pace. It promotes honesty through clear information about pricing, item condition, and sustainability metrics such as estimated carbon savings per purchase. Additionally, users retain full control over their browsing experience, with features like easy opt-outs, no unnecessary data collection, and intuitive filters that support rather than overwhelm. These choices matter because fast fashion often relies on manipulative design to encourage impulsive consumption. By deliberately rejecting dark patterns, the platform not only supports slow fashion values and mindful purchasing, but also earns user trust, a growing competitive advantage in an era of digital skepticism. 
+\subsection{Data Privacy and User Consent}
+Protecting user data is not only a technical requirement but an ethical imperative for this platform’s design. As emphasized by GDPR standards and Politou et al. (2018) case study, users must be given clear, accessible information about what data is being collected like browsing patterns or saved items and how it is used to shape their experience \cite{politou2018gdpr}. This aligns with broader calls for transparent data practices, particularly in light of critiques against opaque platforms like Facebook, where manipulation without user consent led to distrust. To build and maintain user confidence, consent mechanisms must be both explicit and revocable, following GDPR’s mandate that users should be able to withdraw their data consent at any time. Technical precedents like the EnCoRe and OPERANDO frameworks demonstrate how such consent revocation can be implemented through granular, user-controlled permissions. Moreover, minimizing the amount of data collected and enforcing secure storage aligns with the principle of privacy-by-design, ensuring compliance while reducing the risk of data misuse. This is especially crucial when third-party APIs and integrations are involved—users should be able to track not only how their data is used internally, but also where it flows externally. While total control across all third-party environments remains a technical challenge, striving toward this transparency is essential for ethical alignment and user empowerment.
+
+\subsection{Bias and Fairness of Search Results}
+Bias in search results is a critical concern for any platform, particularly in the context of circular fashion, where there is a risk of overrepresentation of certain mainstream brands or popular styles, while niche or marginalized sellers may be underrepresented. This can create an imbalance, favoring high-demand, mass-market items over unique, lesser-known pieces from smaller or marginalized sellers. To combat this, the platform will implement algorithmic adjustments to ensure a more diverse and equitable representation of items. By incorporating features like "Hidden Gems" Sections that highlight underappreciated items or curated collections from niche sellers, the platform will actively promote diversity in what is showcased. Additionally, user-generated filters such as "Support Small Business" will help bring visibility to marginalized sellers, while a dynamic search ranking system will prioritize inclusivity by giving equal weight to all types of sellers, preventing bias toward mainstream brands. These interventions will ensure that users have access to a wider array of items and sellers, fostering a more balanced and inclusive marketplace.
+\subsection{Exclusivity Outshining Accessibility}
+A key risk in circular fashion platforms is the tension between accessibility and exclusivity. Platforms may inadvertently cater to privileged "creativists" a term coined by Steward which explains  users who prioritize aesthetic appeal and status over affordability \cite{steward2020shirt}. This focus on high-end, curated, or exclusive items can sideline budget-conscious thrift-seekers, who rely on secondhand fashion for affordability rather than trend-driven consumption. As a result, the platform could unintentionally create a divide, where those with more disposable income can access desirable items, while those with tighter budgets are left with fewer affordable options, thus undermining the inclusivity that circular fashion seeks to promote.
+\subsection{Accessibility and Inclusion}
+Ensuring accessibility from the outset is essential to building an inclusive platform. Rather than treating accessibility as a retroactive fix, it must be embedded throughout the design process to support users with a range of needs. For instance, screen reader compatibility requires thoughtful labeling of images and buttons, as unlabeled or poorly structured interfaces can prevent blind users from efficiently navigating or even understanding content \cite{botelho2021accessibility}. Similarly, high-contrast visual modes and meaningful alt text are not just aesthetic choices but serve as functional necessities that must persist through updates to avoid regressions in usability. Keyboard navigability is another foundational requirement, particularly for users with motor impairments who rely on alternatives to touch interfaces. Accessibility is not only about individual features working in isolation, but about ensuring the entire interaction chain functions cohesively. Aligning with legal frameworks like the Convention on the Rights of Persons with Disabilities (CRPD) and accessibility standards such as Web Content Accessibility Guidelines (WCAG) ensures that these considerations aren’t optional, but upheld as baseline design commitments that reflect both ethical responsibility and digital equity.
+
+In terms of cultural and stylistic inclusion, the platform should support inclusive sizing, gender-neutral categories, and a diverse range of aesthetics and cultural styles. Search and filter systems must avoid enforcing normative fashion categories, instead enabling users to self-identify and curate based on their own fashion identities. Highlighting sellers from underrepresented communities and offering customization tools for styling can further promote equity and visibility across the platform.
+
+
+
+
+
+
+
+
+\section{Results and Discussion}
+
+
+
+
+
+\appendix
+
+
+\printbibliography
+
+\end{document}
